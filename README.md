@@ -1,9 +1,3 @@
-## Support & Donations
-
-If you find this project helpful, consider supporting it!
-
-[Donate via PayPal](https://www.paypal.com/paypalme/revrari)
-
 # Ancient Greek Tweaks for Emacs
 
 Emacs configuration for working with Ancient Greek text, including input method switching, dynamic cursor styling, and text utilities.
@@ -82,19 +76,6 @@ Greek and Hebrew font settings in [greek-hebrew.el](greek-hebrew.el):
 ```elisp
 (set-fontset-font "fontset-default" 'greek (font-spec :family "Liberation Mono" :size 22))
 (set-fontset-font "fontset-default" 'hebrew (font-spec :family "Liberation Mono" :size 22))
-```
-
-### Alternative Font Option
-
-If you prefer **SBL BibLit** for Biblical text, you can:
-
-1. Download from [SBL Fonts](https://www.sbl-site.org/resources/fonts/)
-2. Install the font on your system
-3. Edit [greek-hebrew.el](greek-hebrew.el) and uncomment the SBL BibLit lines:
-
-```elisp
-(set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 20))
-(set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 20))
 ```
 
 Adjust the `:size` value to your preference.
