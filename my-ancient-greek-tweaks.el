@@ -82,13 +82,26 @@ Checks characters within 5 positions before and after point."
 
 (defun strip-numbers-and-brackets (beg end)
   "Remove numbers and brackets from selected region between BEG and END.
+Also removes leading/trailing spaces and collapses multiple spaces between words.
 Useful for cleaning up Greek/Hebrew text with verse numbers."
   (interactive "r")
   (save-excursion
     (save-restriction
       (narrow-to-region beg end)
+      ;; Remove numbers and brackets
       (goto-char (point-min))
       (while (re-search-forward "\\([0-9]+\\|\\[\\|\\]\\)" nil t)
+        (replace-match ""))
+      ;; Collapse multiple spaces into single space
+      (goto-char (point-min))
+      (while (re-search-forward " \\{2,\\}" nil t)
+        (replace-match " "))
+      ;; Remove leading and trailing whitespace from each line
+      (goto-char (point-min))
+      (while (re-search-forward "^[[:space:]]+" nil t)
+        (replace-match ""))
+      (goto-char (point-min))
+      (while (re-search-forward "[[:space:]]+$" nil t)
         (replace-match "")))))
 
 (defalias 'grk 'strip-numbers-and-brackets)
@@ -140,11 +153,11 @@ This tells flyspell to skip checking this word."
 
 ;; Use Liberation Mono for Greek and Hebrew
 ;; Alternative option - SBL BibLit (download from: https://www.sbl-site.org/resources/fonts/):
-;; (set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 20))
-;; (set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 20))
+(set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 22))
+(set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 20))
 
-(set-fontset-font "fontset-default" 'greek (font-spec :family "Liberation Mono" :size 22))
-(set-fontset-font "fontset-default" 'hebrew (font-spec :family "Liberation Mono" :size 22))
+;; (set-fontset-font "fontset-default" 'greek (font-spec :family "Liberation Mono" :size 22))
+;; (set-fontset-font "fontset-default" 'hebrew (font-spec :family "Liberation Mono" :size 22))
 
 (provide 'my-ancient-greek-tweaks)
 
