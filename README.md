@@ -2,6 +2,10 @@
 
 Emacs configuration for working with Ancient Greek text, including input method switching, dynamic cursor styling, and text utilities.
 
+## Demo
+
+[Video demonstration](https://youtu.be/oToTtoK1PQ0)
+
 ## Features
 
 - **Input Method Switching**: Quick toggle for Greek (babel) input method
